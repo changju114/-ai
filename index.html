@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>해링턴 플레이스 한강 | 프리미엄 분양 안내</title>
+    <meta
+      name="description"
+      content="한강을 품은 도심 속 프리미엄 라이프, 해링턴 플레이스 한강. 84㎡ 단일 평형, 전세대 한강 조망, 최고 수준의 커뮤니티 시설"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #1a1a1a;
+        background: #fafaf7;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .serif {
+        font-family: "Playfair Display", serif;
+      }
+
+      :root {
+        --primary: #0c2340;
+        --gold: #b8985a;
+        --gold-light: #d4b885;
+        --ink: #1a1a1a;
+        --muted: #6b6b6b;
+        --line: #e5e2da;
+        --bg: #fafaf7;
+      }
+
+      /* === NAV === */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 18px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.4s ease;
+      }
+      .nav.scrolled {
+        background: rgba(12, 35, 64, 0.96);
+        backdrop-filter: blur(12px);
+        padding: 14px 48px;
+        box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08);
+      }
+      .nav-logo {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+      .nav-logo .accent {
+        color: var(--gold-light);
+      }
+      .nav-menu {
+        display: flex;
+        gap: 38px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-menu a {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 14px;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s;
+      }
+      .nav-menu a:hover {
+        color: var(--gold-light);
+      }
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--gold-light);
+        transition: width 0.3s;
+      }
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+      .nav-cta {
+        background: var(--gold);
+        color: #fff;
+        padding: 10px 22px;
+        border-radius: 2px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        transition: background 0.3s;
+      }
+      .nav-cta:hover {
+        background: #a08649;
+      }
+
+      /* === HERO === */
+      .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 700px;
+        overflow: hidden;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(12, 35, 64, 0.55) 0%, rgba(12, 35, 64, 0.75) 100%),
+          url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2000&q=80")
+            center/cover no-repeat;
+        transform: scale(1.05);
+        animation: zoomOut 8s ease-out forwards;
+      }
+      @keyframes zoomOut {
+        from {
+          transform: scale(1.15);
+        }
+        to {
+          transform: scale(1.05);
+        }
+      }
+      .hero-content {
+        position: relative;
+        text-align: center;
+        z-index: 2;
+        padding: 0 24px;
+        max-width: 900px;
+      }
+      .hero-tag {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 0.4em;
+        color: var(--gold-light);
+        margin-bottom: 28px;
+        opacity: 0;
+        animation: fadeUp 1s 0.3s forwards;
+      }
+      .hero-tag::before,
+      .hero-tag::after {
+        content: "—";
+        margin: 0 14px;
+        opacity: 0.6;
+      }
+      .hero h1 {
+        font-size: clamp(2.4rem, 6vw, 4.8rem);
+        line-height: 1.15;
+        font-weight: 300;
+        margin-bottom: 28px;
+        opacity: 0;
+        animation: fadeUp 1s 0.5s forwards;
+      }
+      .hero h1 strong {
+        font-weight: 700;
+        background: linear-gradient(135deg, #fff 0%, var(--gold-light) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero-sub {
+        font-size: clamp(15px, 1.3vw, 18px);
+        font-weight: 300;
+        max-width: 600px;
+        margin: 0 auto 44px;
+        line-height: 1.8;
+        opacity: 0;
+        animation: fadeUp 1s 0.7s forwards;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeUp 1s 0.9s forwards;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 36px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        border-radius: 2px;
+        transition: all 0.35s ease;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background: var(--gold);
+        color: #fff;
+        border: 1px solid var(--gold);
+      }
+      .btn-primary:hover {
+        background: transparent;
+        color: var(--gold-light);
+        transform: translateY(-2px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .btn-ghost:hover {
+        background: #fff;
+        color: var(--primary);
+        border-color: #fff;
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        color: rgba(255, 255, 255, 0.7);
+        animation: bounce 2.5s infinite;
+      }
+      .hero-scroll::after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 38px;
+        background: rgba(255, 255, 255, 0.5);
+        margin: 12px auto 0;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes bounce {
+        0%, 100% {
+          transform: translate(-50%, 0);
+        }
+        50% {
+          transform: translate(-50%, -8px);
+        }
+      }
+
+      /* === COUNTER STRIP === */
+      .stats {
+        background: var(--primary);
+        color: #fff;
+        padding: 56px 24px;
+      }
+      .stats-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        text-align: center;
+      }
+      .stat-item {
+        position: relative;
+      }
+      .stat-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 20%;
+        height: 60%;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .stat-num {
+        font-size: clamp(2rem, 3vw, 3rem);
+        font-weight: 300;
+        color: var(--gold-light);
+        font-family: "Playfair Display", serif;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+      .stat-label {
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      /* === SECTION COMMON === */
+      .section {
+        padding: 120px 24px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .sec-head {
+        text-align: center;
+        margin-bottom: 72px;
+      }
+      .eyebrow {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 0.4em;
+        color: var(--gold);
+        margin-bottom: 18px;
+        font-weight: 600;
+      }
+      .sec-title {
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+        line-height: 1.25;
+        font-weight: 300;
+        margin-bottom: 18px;
+      }
+      .sec-title strong {
+        font-weight: 700;
+      }
+      .sec-desc {
+        max-width: 620px;
+        margin: 0 auto;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      /* === FEATURES === */
+      .features {
+        background: #fff;
+      }
+      .feat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 36px;
+      }
+      .feat-card {
+        background: var(--bg);
+        padding: 48px 36px;
+        border-radius: 4px;
+        border: 1px solid var(--line);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .feat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        transition: width 0.5s ease;
+      }
+      .feat-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(12, 35, 64, 0.08);
+        border-color: transparent;
+      }
+      .feat-card:hover::before {
+        width: 100%;
+      }
+      .feat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 56px;
+        color: var(--gold);
+        line-height: 1;
+        font-weight: 400;
+        opacity: 0.4;
+        margin-bottom: 24px;
+      }
+      .feat-title {
+        font-size: 22px;
+        margin-bottom: 14px;
+        color: var(--primary);
+      }
+      .feat-desc {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      /* === LOCATION === */
+      .location {
+        background: var(--primary);
+        color: #fff;
+        padding: 120px 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      .location::before {
+        content: "";
+        position: absolute;
+        top: -120px;
+        right: -120px;
+        width: 480px;
+        height: 480px;
+        background: radial-gradient(circle, rgba(184, 152, 90, 0.18) 0%, transparent 70%);
+        border-radius: 50%;
+      }
+      .loc-wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 80px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+      .loc-text .eyebrow {
+        color: var(--gold-light);
+      }
+      .loc-text h2 {
+        color: #fff;
+        font-size: clamp(2rem, 3.2vw, 2.6rem);
+        font-weight: 300;
+        line-height: 1.3;
+        margin-bottom: 28px;
+      }
+      .loc-text p {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 16px;
+        line-height: 1.85;
+        margin-bottom: 36px;
+      }
+      .loc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .loc-list li {
+        padding: 18px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 15px;
+      }
+      .loc-list li:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .loc-list .key {
+        color: var(--gold-light);
+        font-weight: 500;
+        letter-spacing: 0.04em;
+      }
+      .loc-list .val {
+        color: rgba(255, 255, 255, 0.9);
+        text-align: right;
+      }
+      .loc-map {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+        background:
+          linear-gradient(135deg, rgba(184, 152, 90, 0.1), rgba(12, 35, 64, 0.1)),
+          url("https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=1200&q=80")
+            center/cover;
+        border: 1px solid rgba(184, 152, 90, 0.3);
+      }
+      .map-pin {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        box-shadow: 0 0 0 0 rgba(184, 152, 90, 0.6);
+        animation: pulse 2.2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(184, 152, 90, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 28px rgba(184, 152, 90, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(184, 152, 90, 0);
+        }
+      }
+
+      /* === FLOORPLAN === */
+      .plan {
+        background: var(--bg);
+      }
+      .plan-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 56px;
+        flex-wrap: wrap;
+      }
+      .plan-tab {
+        padding: 12px 28px;
+        background: #fff;
+        border: 1px solid var(--line);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--muted);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      .plan-tab.active,
+      .plan-tab:hover {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+      }
+      .plan-card {
+        background: #fff;
+        border-radius: 4px;
+        padding: 48px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+        box-shadow: 0 8px 32px rgba(12, 35, 64, 0.06);
+      }
+      .plan-img {
+        aspect-ratio: 1;
+        background:
+          linear-gradient(135deg, #f5f2ea, #e8e3d5);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .plan-svg {
+        width: 80%;
+        height: 80%;
+      }
+      .plan-info h3 {
+        font-size: 32px;
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+      .plan-type {
+        color: var(--gold);
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.2em;
+        margin-bottom: 28px;
+      }
+      .plan-spec {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 32px;
+      }
+      .plan-spec li {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+      }
+      .plan-spec .lbl {
+        color: var(--muted);
+      }
+      .plan-spec .v {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .plan-cta {
+        background: var(--primary);
+        color: #fff;
+        padding: 14px 32px;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      .plan-cta:hover {
+        background: var(--gold);
+      }
+
+      /* === COMMUNITY === */
+      .community {
+        background: #fff;
+      }
+      .com-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 220px;
+        gap: 16px;
+      }
+      .com-item {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.5s ease;
+      }
+      .com-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s ease;
+      }
+      .com-item:hover img {
+        transform: scale(1.08);
+      }
+      .com-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 40%, rgba(12, 35, 64, 0.85));
+      }
+      .com-cap {
+        position: absolute;
+        bottom: 22px;
+        left: 24px;
+        right: 24px;
+        z-index: 2;
+        color: #fff;
+      }
+      .com-cap h4 {
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+      .com-cap span {
+        font-size: 12px;
+        color: var(--gold-light);
+        letter-spacing: 0.15em;
+      }
+      .com-large {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      .com-tall {
+        grid-row: span 2;
+      }
+
+      /* === SCHEDULE === */
+      .schedule {
+        background: var(--bg);
+      }
+      .timeline {
+        max-width: 880px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--line);
+        transform: translateX(-50%);
+      }
+      .tl-item {
+        position: relative;
+        width: 50%;
+        padding: 24px 48px;
+        margin-bottom: 12px;
+      }
+      .tl-item:nth-child(odd) {
+        margin-left: 0;
+        text-align: right;
+      }
+      .tl-item:nth-child(even) {
+        margin-left: 50%;
+      }
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        top: 36px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        border: 3px solid var(--gold);
+        z-index: 2;
+      }
+      .tl-item:nth-child(odd)::before {
+        right: -9px;
+      }
+      .tl-item:nth-child(even)::before {
+        left: -9px;
+      }
+      .tl-item.done::before {
+        background: var(--gold);
+      }
+      .tl-date {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        color: var(--gold);
+        margin-bottom: 6px;
+      }
+      .tl-title {
+        font-size: 18px;
+        color: var(--primary);
+        margin-bottom: 6px;
+      }
+      .tl-desc {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* === CTA / CONTACT === */
+      .contact {
+        background: linear-gradient(135deg, var(--primary) 0%, #1a3a5e 100%);
+        color: #fff;
+        padding: 120px 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      .contact::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        left: -200px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(184, 152, 90, 0.15), transparent 70%);
+        border-radius: 50%;
+      }
+      .contact-wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        position: relative;
+        z-index: 2;
+      }
+      .contact-info .eyebrow {
+        color: var(--gold-light);
+      }
+      .contact-info h2 {
+        font-size: clamp(2rem, 3vw, 2.6rem);
+        font-weight: 300;
+        line-height: 1.3;
+        margin-bottom: 24px;
+      }
+      .contact-info p {
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.85;
+        margin-bottom: 36px;
+      }
+      .contact-meta {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .contact-meta li {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        margin-bottom: 22px;
+        font-size: 15px;
+      }
+      .contact-meta .ico {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(184, 152, 90, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold-light);
+        flex-shrink: 0;
+      }
+      .contact-meta .lbl {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        margin-bottom: 2px;
+      }
+      .contact-meta .val {
+        color: #fff;
+        font-weight: 500;
+      }
+      .form {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(8px);
+        padding: 44px;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .form h3 {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+      .form .sub {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 13px;
+        margin-bottom: 28px;
+      }
+      .field {
+        margin-bottom: 18px;
+      }
+      .field label {
+        display: block;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        color: var(--gold-light);
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 2px;
+        color: #fff;
+        font-size: 14px;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        outline: none;
+        border-color: var(--gold);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .field textarea {
+        resize: vertical;
+        min-height: 90px;
+      }
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .agree {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        margin: 8px 0 22px;
+      }
+      .agree input {
+        margin-top: 3px;
+        accent-color: var(--gold);
+      }
+      .form-submit {
+        width: 100%;
+        padding: 16px;
+        background: var(--gold);
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.15em;
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      .form-submit:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+      }
+
+      /* === FOOTER === */
+      .footer {
+        background: #0a1c33;
+        color: rgba(255, 255, 255, 0.6);
+        padding: 60px 24px 30px;
+        text-align: center;
+        font-size: 13px;
+      }
+      .footer-logo {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+      }
+      .footer-logo .accent {
+        color: var(--gold-light);
+      }
+      .footer p {
+        margin: 6px 0;
+        line-height: 1.8;
+      }
+      .footer-divider {
+        width: 60px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 24px auto;
+      }
+      .footer .copy {
+        color: rgba(255, 255, 255, 0.35);
+        font-size: 12px;
+        letter-spacing: 0.05em;
+      }
+
+      /* Reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.9s ease, transform 0.9s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Floating CTA */
+      .float-cta {
+        position: fixed;
+        right: 28px;
+        bottom: 28px;
+        z-index: 90;
+        background: var(--gold);
+        color: #fff;
+        padding: 16px 26px;
+        border-radius: 60px;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        box-shadow: 0 12px 32px rgba(184, 152, 90, 0.45);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s;
+      }
+      .float-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(184, 152, 90, 0.6);
+      }
+
+      /* Mobile */
+      @media (max-width: 900px) {
+        .nav {
+          padding: 14px 20px;
+        }
+        .nav.scrolled {
+          padding: 12px 20px;
+        }
+        .nav-menu {
+          display: none;
+        }
+        .section {
+          padding: 80px 20px;
+        }
+        .feat-grid,
+        .stats-grid,
+        .com-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .stats-grid {
+          gap: 36px 16px;
+        }
+        .stat-item:not(:last-child)::after {
+          display: none;
+        }
+        .loc-wrap,
+        .plan-card,
+        .contact-wrap {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .plan-card {
+          padding: 28px;
+        }
+        .form {
+          padding: 28px;
+        }
+        .timeline::before {
+          left: 14px;
+        }
+        .tl-item {
+          width: 100%;
+          padding-left: 44px;
+          padding-right: 0;
+          text-align: left !important;
+          margin-left: 0 !important;
+        }
+        .tl-item::before {
+          left: 6px !important;
+          right: auto !important;
+        }
+        .com-grid {
+          grid-auto-rows: 180px;
+        }
+        .com-large {
+          grid-column: span 2;
+          grid-row: span 2;
+        }
+        .float-cta {
+          right: 16px;
+          bottom: 16px;
+          padding: 14px 22px;
+        }
+      }
+      @media (max-width: 600px) {
+        .feat-grid,
+        .com-grid {
+          grid-template-columns: 1fr;
+        }
+        .com-large,
+        .com-tall {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+      <div class="nav-logo">HARRINGTON <span class="accent">·</span> 한강</div>
+      <ul class="nav-menu">
+        <li><a href="#features">단지특장점</a></li>
+        <li><a href="#location">입지환경</a></li>
+        <li><a href="#plan">평면안내</a></li>
+        <li><a href="#community">커뮤니티</a></li>
+        <li><a href="#schedule">청약일정</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">분양문의</a>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <span class="hero-tag serif">PREMIUM RIVERSIDE RESIDENCE</span>
+        <h1>
+          한강을 품은 일상,<br />
+          <strong>해링턴 플레이스 한강</strong>
+        </h1>
+        <p class="hero-sub">
+          도심의 중심에서 자연을 품다. 전 세대 한강 조망과<br />
+          최고급 마감, 도보 5분 더블 역세권의 프리미엄 라이프스타일.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">청약 사전예약 →</a>
+          <a href="#plan" class="btn btn-ghost">평면도 보기</a>
+        </div>
+      </div>
+      <div class="hero-scroll">SCROLL</div>
+    </header>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num serif">428</div>
+          <div class="stat-label">총 세대 수</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num serif">84㎡</div>
+          <div class="stat-label">단일 평형</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num serif">100%</div>
+          <div class="stat-label">한강 조망</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num serif">5min</div>
+          <div class="stat-label">도보 역세권</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section features reveal" id="features">
+      <div class="sec-head">
+        <span class="eyebrow">PREMIUM POINTS</span>
+        <h2 class="sec-title">단지의 가치를 만드는 <strong>다섯 가지 약속</strong></h2>
+        <p class="sec-desc">
+          입지부터 설계, 마감까지. 일상의 모든 순간을 다르게 만드는 디테일을 담았습니다.
+        </p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-num serif">01</div>
+          <h3 class="feat-title">한강 파노라마 조망</h3>
+          <p class="feat-desc">
+            전 세대 남향 배치와 4면 발코니 설계로 막힘없는 한강 파노라마를 일상으로 누립니다.
+          </p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num serif">02</div>
+          <h3 class="feat-title">더블 역세권 입지</h3>
+          <p class="feat-desc">
+            지하철 9호선·경의중앙선 도보 5분, 강변북로·올림픽대로 진입 3분의 사통팔달 교통망.
+          </p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num serif">03</div>
+          <h3 class="feat-title">명문 학군 라이프</h3>
+          <p class="feat-desc">
+            도보 통학 가능한 초·중·고 트리플 학군과 명문 학원가가 단지 바로 앞에 자리합니다.
+          </p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num serif">04</div>
+          <h3 class="feat-title">프리미엄 마감재</h3>
+          <p class="feat-desc">
+            국내외 럭셔리 브랜드 빌트인 가전, 천연 대리석 주방, 시스템 에어컨 풀옵션 적용.
+          </p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num serif">05</div>
+          <h3 class="feat-title">스마트 홈 시스템</h3>
+          <p class="feat-desc">
+            AI 음성 제어, 원격 출입, 미세먼지 감지 환기 등 차세대 IoT 통합 솔루션 기본 제공.
+          </p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num serif">06</div>
+          <h3 class="feat-title">조경·커뮤니티</h3>
+          <p class="feat-desc">
+            대지 면적 60% 이상의 친환경 조경과 5,000평 규모 호텔식 커뮤니티 시설.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="location reveal" id="location">
+      <div class="loc-wrap">
+        <div class="loc-text">
+          <span class="eyebrow">LOCATION</span>
+          <h2>한강 변,<br />가장 가까운 도심의 중심.</h2>
+          <p>
+            서울의 중심을 가로지르는 한강과 도심 인프라를 모두 누리는 입지.
+            업무·교육·문화·자연이 한 자리에서 완성되는 가장 완벽한 주거 좌표입니다.
+          </p>
+          <ul class="loc-list">
+            <li><span class="key">교통</span><span class="val">9호선·경의중앙선 도보 5분 / 강변북로 3분</span></li>
+            <li><span class="key">교육</span><span class="val">○○초·○○중·○○고 도보권, 대치 학원가 인근</span></li>
+            <li><span class="key">자연</span><span class="val">한강시민공원·올림픽공원 도보 7분</span></li>
+            <li><span class="key">생활</span><span class="val">현대백화점·스타필드·대형마트 차량 5분</span></li>
+            <li><span class="key">의료</span><span class="val">서울아산병원·삼성서울병원 차량 10분</span></li>
+          </ul>
+        </div>
+        <div class="loc-map">
+          <div class="map-pin">★</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOORPLAN -->
+    <section class="section plan reveal" id="plan">
+      <div class="sec-head">
+        <span class="eyebrow">FLOOR PLAN</span>
+        <h2 class="sec-title">합리적 공간을 넘어 <strong>특별한 일상</strong>으로</h2>
+        <p class="sec-desc">
+          84㎡ 단일 평형, 4Bay 판상형 설계로 채광·통풍·수납을 모두 해결한 실용 평면.
+        </p>
+      </div>
+      <div class="plan-tabs">
+        <button class="plan-tab active">84A 4Bay</button>
+        <button class="plan-tab">84B 4Bay</button>
+        <button class="plan-tab">84C 펜트</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-img">
+          <svg class="plan-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="20" width="360" height="360" fill="none" stroke="#0c2340" stroke-width="3"/>
+            <line x1="20" y1="180" x2="380" y2="180" stroke="#0c2340" stroke-width="2"/>
+            <line x1="200" y1="20" x2="200" y2="180" stroke="#0c2340" stroke-width="2"/>
+            <line x1="140" y1="180" x2="140" y2="380" stroke="#0c2340" stroke-width="2"/>
+            <line x1="260" y1="180" x2="260" y2="380" stroke="#0c2340" stroke-width="2"/>
+            <text x="110" y="105" text-anchor="middle" fill="#0c2340" font-size="14" font-weight="600">침실 1</text>
+            <text x="290" y="105" text-anchor="middle" fill="#0c2340" font-size="14" font-weight="600">거실</text>
+            <text x="80" y="285" text-anchor="middle" fill="#0c2340" font-size="14" font-weight="600">주방</text>
+            <text x="200" y="285" text-anchor="middle" fill="#0c2340" font-size="14" font-weight="600">침실 2</text>
+            <text x="320" y="285" text-anchor="middle" fill="#0c2340" font-size="14" font-weight="600">침실 3</text>
+            <text x="200" y="365" text-anchor="middle" fill="#b8985a" font-size="11" letter-spacing="2">— SOUTH BAY —</text>
+          </svg>
+        </div>
+        <div class="plan-info">
+          <p class="plan-type">TYPE 84A · 4 BAY</p>
+          <h3>전용 84.97㎡</h3>
+          <ul class="plan-spec">
+            <li><span class="lbl">공급면적</span><span class="v">109.21㎡ (33평)</span></li>
+            <li><span class="lbl">전용면적</span><span class="v">84.97㎡</span></li>
+            <li><span class="lbl">방 / 욕실</span><span class="v">3 BR / 2 BA</span></li>
+            <li><span class="lbl">주차</span><span class="v">세대당 1.4대</span></li>
+            <li><span class="lbl">세대수</span><span class="v">320 세대</span></li>
+          </ul>
+          <a href="#contact" class="plan-cta">상세 평면도 다운로드 →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="section community reveal" id="community">
+      <div class="sec-head">
+        <span class="eyebrow">COMMUNITY</span>
+        <h2 class="sec-title">호텔의 일상, <strong>집에서 누리다</strong></h2>
+        <p class="sec-desc">
+          5성급 호텔 못지 않은 5,000평 규모의 프리미엄 커뮤니티가 매일을 더 풍요롭게 만듭니다.
+        </p>
+      </div>
+      <div class="com-grid">
+        <div class="com-item com-large">
+          <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1200&q=80" alt="Pool" />
+          <div class="com-cap">
+            <span>SIGNATURE</span>
+            <h4>인피니티 인도어 풀</h4>
+          </div>
+        </div>
+        <div class="com-item">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Gym" />
+          <div class="com-cap">
+            <span>FITNESS</span>
+            <h4>피트니스 클럽</h4>
+          </div>
+        </div>
+        <div class="com-item">
+          <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=800&q=80" alt="Lounge" />
+          <div class="com-cap">
+            <span>LOUNGE</span>
+            <h4>스카이 라운지</h4>
+          </div>
+        </div>
+        <div class="com-item com-tall">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80" alt="Garden" />
+          <div class="com-cap">
+            <span>OUTDOOR</span>
+            <h4>루프탑 가든</h4>
+          </div>
+        </div>
+        <div class="com-item">
+          <img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=800&q=80" alt="Library" />
+          <div class="com-cap">
+            <span>STUDY</span>
+            <h4>북카페·도서관</h4>
+          </div>
+        </div>
+        <div class="com-item">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=800&q=80" alt="Kids" />
+          <div class="com-cap">
+            <span>KIDS</span>
+            <h4>키즈 플레이</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="section schedule reveal" id="schedule">
+      <div class="sec-head">
+        <span class="eyebrow">SCHEDULE</span>
+        <h2 class="sec-title">청약 <strong>주요 일정</strong></h2>
+        <p class="sec-desc">아래 일정에 따라 진행되며, 사전 예약 시 우선 안내해드립니다.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item done">
+          <div class="tl-date serif">06.10</div>
+          <div class="tl-title">입주자 모집공고</div>
+          <div class="tl-desc">공고일 및 분양홈페이지 오픈</div>
+        </div>
+        <div class="tl-item done">
+          <div class="tl-date serif">06.18 — 06.19</div>
+          <div class="tl-title">특별공급 청약접수</div>
+          <div class="tl-desc">생애최초·신혼·다자녀·노부모</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date serif">06.20</div>
+          <div class="tl-title">1순위 청약접수</div>
+          <div class="tl-desc">해당지역·기타지역 동시 접수</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date serif">06.21</div>
+          <div class="tl-title">2순위 청약접수</div>
+          <div class="tl-desc">청약통장 가입자 대상</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date serif">06.27</div>
+          <div class="tl-title">당첨자 발표</div>
+          <div class="tl-desc">홈페이지·문자 개별 통보</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date serif">07.10 — 07.12</div>
+          <div class="tl-title">정당 계약체결</div>
+          <div class="tl-desc">견본주택 내 계약 진행</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact reveal" id="contact">
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <span class="eyebrow">CONTACT</span>
+          <h2>새로운 시작,<br />지금 사전 예약하세요.</h2>
+          <p>
+            관심 고객 등록 시 분양 일정·평면·가격 정보를 가장 먼저 안내해드립니다.
+            견본주택 방문 예약도 함께 진행됩니다.
+          </p>
+          <ul class="contact-meta">
+            <li>
+              <div class="ico">☎</div>
+              <div>
+                <div class="lbl">상담 전화</div>
+                <div class="val">1588 — 0000</div>
+              </div>
+            </li>
+            <li>
+              <div class="ico">⌖</div>
+              <div>
+                <div class="lbl">견본주택 위치</div>
+                <div class="val">서울특별시 ○○구 ○○동 100 일원</div>
+              </div>
+            </li>
+            <li>
+              <div class="ico">⏱</div>
+              <div>
+                <div class="lbl">관람 시간</div>
+                <div class="val">평일·주말 10:00 — 18:00</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <form class="form" onsubmit="handleSubmit(event)">
+          <h3>분양 사전 예약</h3>
+          <p class="sub">아래 정보를 입력해 주시면 빠르게 연락드리겠습니다.</p>
+          <div class="field">
+            <label>이름</label>
+            <input type="text" placeholder="성함을 입력해 주세요" required />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>연락처</label>
+              <input type="tel" placeholder="010-0000-0000" required />
+            </div>
+            <div class="field">
+              <label>관심 평형</label>
+              <select>
+                <option>84A 4Bay</option>
+                <option>84B 4Bay</option>
+                <option>84C 펜트하우스</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>거주 지역</label>
+            <input type="text" placeholder="예) 서울 강남구" />
+          </div>
+          <div class="field">
+            <label>문의사항</label>
+            <textarea placeholder="궁금하신 점을 자유롭게 남겨주세요"></textarea>
+          </div>
+          <label class="agree">
+            <input type="checkbox" required />
+            <span>개인정보 수집 및 이용에 동의합니다. 수집된 정보는 분양 안내 목적 외 사용되지 않습니다.</span>
+          </label>
+          <button type="submit" class="form-submit">사전 예약 신청하기</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-logo">HARRINGTON <span class="accent">·</span> 한강</div>
+      <p>해링턴 플레이스 한강 분양사무소</p>
+      <p>서울특별시 ○○구 ○○동 100 일원 | 사업자등록번호 000-00-00000</p>
+      <p>대표전화 1588-0000 | E-mail. sales@harrington-hangang.co.kr</p>
+      <div class="footer-divider"></div>
+      <p class="copy">© 2026 HARRINGTON PLACE HANGANG. All rights reserved.</p>
+    </footer>
+
+    <a href="#contact" class="float-cta">☎ 분양상담</a>
+
+    <script>
+      // Nav scroll effect
+      const nav = document.getElementById("nav");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 60) nav.classList.add("scrolled");
+        else nav.classList.remove("scrolled");
+      });
+
+      // Reveal on scroll
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Plan tabs (visual only)
+      const tabs = document.querySelectorAll(".plan-tab");
+      tabs.forEach((t) =>
+        t.addEventListener("click", () => {
+          tabs.forEach((x) => x.classList.remove("active"));
+          t.classList.add("active");
+        })
+      );
+
+      // Form submit
+      function handleSubmit(e) {
+        e.preventDefault();
+        alert("사전 예약 신청이 접수되었습니다.\n담당자가 빠르게 연락드리겠습니다.");
+        e.target.reset();
+      }
+    </script>
+  </body>
+</html>
